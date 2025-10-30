@@ -49,7 +49,7 @@ public class DishController {
         return ResponseEntity.ok(response);
     }
 
-    // 3.3 - GET /api/v1/dishes/{id}
+    // 3.3 - GET /api/v1/dishes/{id} Lấy chi tiết món ăn
     @GetMapping("/{id}")
     public ResponseEntity<DishResponse> getDishById(@PathVariable String id) {
         Dish dish = dishService.getDishById(id)
@@ -57,7 +57,7 @@ public class DishController {
         return ResponseEntity.ok(modelMapper.map(dish, DishResponse.class));
     }
 
-    // 3.4 - POST /api/v1/dishes
+    // 3.4 - POST /api/v1/dishes Thêm món ăn mới
     @PostMapping
     public ResponseEntity<DishResponse> createDish(@Valid @RequestBody DishRequest request) {
         Dish dish = modelMapper.map(request, Dish.class);
@@ -66,7 +66,7 @@ public class DishController {
                 .body(modelMapper.map(created, DishResponse.class));
     }
 
-    // 3.5 - PUT /api/v1/dishes/{id}
+    // 3.5 - PUT /api/v1/dishes/{id} Cập nhật món ăn
     @PutMapping("/{id}")
     public ResponseEntity<DishResponse> updateDish(
             @PathVariable String id,
@@ -87,7 +87,7 @@ public class DishController {
         return ResponseEntity.ok(modelMapper.map(updated, DishResponse.class));
     }
 
-    // 3.6 - DELETE /api/v1/dishes/{id}
+    // 3.6 - DELETE /api/v1/dishes/{id} Xoá món ăn
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDish(@PathVariable String id) {
         dishService.softDeleteDish(id);
